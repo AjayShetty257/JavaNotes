@@ -49,10 +49,27 @@ public class ConnectDatabaseCode {
                 productInfos.add(p);
             }
 
+            float sum = 0.f;
             for(ProductInfo p : productInfos) {
-                System.out.println(p.getCreateTime());
+               sum += p.getProductPrice();
             }
 
+            System.out.println("Sum of all products is "+sum);
+            ProductInfo firstProductInfo = productInfos.get(0);
+            Timestamp earliestCreateTime = firstProductInfo.getCreateTime();
+
+            for(ProductInfo p : productInfos) {
+                Timestamp currentCreateTime = p.getCreateTime();
+                if(earliestCreateTime.compareTo(currentCreateTime)>0){
+                    earliestCreateTime = currentCreateTime;
+                }
+                System.out.println(p);
+            }
+            System.out.println("First product added is "+earliestCreateTime);
+
+            System.out.println(productInfos.size());
+            productInfos.remove(0);
+            System.out.println(productInfos.size());
         } catch (SQLException e) {
             e.printStackTrace();
         }

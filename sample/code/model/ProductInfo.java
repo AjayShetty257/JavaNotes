@@ -36,7 +36,10 @@ public class ProductInfo {
     }
 
     public void setProductPrice(float productPrice) {
+        if(productPrice>=0)
         this.productPrice = productPrice;
+        else
+            throw new RuntimeException("Product price given is negative");
     }
 
     public String getProductId() {
@@ -61,7 +64,7 @@ public class ProductInfo {
 
     @Override
     public String toString() {
-        return "ProductInfo{" +
+        return "AJAYA RAHUL ProductInfo{" +
                 "productId='" + productId + '\'' +
                 ", categoryType=" + categoryType +
                 ", createTime=" + createTime +
